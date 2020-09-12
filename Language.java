@@ -2,12 +2,12 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 /**
  * Represents a finite language.
  *
- * @author Dr. Jody Paul
  * @author Naji Shamas
  * @version 1.3.1
  */
@@ -140,6 +140,33 @@ public final class Language implements Iterable<String>, java.io.Serializable {
     @Override
     public int hashCode() {
         return (int) strings.hashCode();
+    }
+    public static void main(String[] args) {
+    	//testing
+    	Language lang1 = new Language();
+    	Language lang2 = new Language();
+    	List<String> coll1 = Arrays.asList("ab23", "45cs", "09qw", "he110");
+    	List<String> coll2 = Arrays.asList("i203", "29wh", "083s", "23ob");
+    	System.out.println(lang1.isEmpty()); // will print true
+    	System.out.println(lang1.cardinality()); // will print 0
+    	System.out.println(lang1.addString("aabb")); // prints true if cardinality changes, which it does.
+    	System.out.println(lang1.addString("cceedd"));
+    	System.out.println(lang1.cardinality()); // will print 4
+    	System.out.println(lang2.addString("0011"));
+    	System.out.println(lang2.addString("2239"));
+    	System.out.println(lang1.cardinality());
+    	System.out.println(lang2.cardinality());
+    	System.out.println(lang1.addAllStrings(coll1));
+    	System.out.println(lang2.addAllStrings(coll2));
+    	Language concat = lang1.concatenate(lang2);
+    	System.out.println(concat.strings);
+    	System.out.println(lang1.includes("ab23"));
+    	System.out.println(lang2.includes("i203"));
+    	System.out.println(lang1.includes("ab21"));
+    	System.out.println(lang2.includes("i213"));
+    	System.out.println(concat.cardinality());
+    	System.out.println(lang2.equals(lang1));
+    	System.out.println((lang1.hashCode() == lang2.hashCode()) ? true : false);
     }
 }
 
