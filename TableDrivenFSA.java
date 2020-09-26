@@ -154,5 +154,11 @@ public class TableDrivenFSA implements java.io.Serializable {
         }
         return false;
     }
+     public static void main(String[] args) {
+        TableDrivenFSA _tdf = new TableDrivenFSA("input.txt");
+        System.out.println(_tdf.nextState(-1, null)); //Invalid edge case.
+        System.out.println(_tdf.processString("clal")); //will not accept.
+        System.out.println(_tdf.processString("abbc"));
+    }
 }
 
